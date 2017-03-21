@@ -1,22 +1,41 @@
 <template>
     <div>
-      <div><span class="avatar">振龙</span></div>
+      <div>
+        <img :src="userInfo.avatar_url" alt="" class="avatar">
+        <span>{{userInfo.loginname}}</span>
+      </div>
     </div>
 </template>
-<style scoped="scoped">
+<script>
+  import { mapGetters } from 'vuex'
+
+  export default {
+    data() {
+      return {};
+    },
+    computed: {
+      ...mapGetters({
+        userInfo: 'getUserInfo'
+      })
+
+    }
+  }
+</script>
+<style scoped="scoped" lang="scss">
   div>div{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    img.avatar{
+      display: block;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+    span{
+      color: #ffffff;
+      line-height: 30px;
+    }
+  }
 
-  }
-  span.avatar{
-    background-color: #f60;
-    display: block;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    text-align: center;
-    color: #fff;
-    line-height: 80px;
-  }
 </style>

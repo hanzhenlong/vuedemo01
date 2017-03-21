@@ -3,7 +3,11 @@
         <avatar></avatar>
         <div class="side-menus">
           <ul>
-            <li v-for="menu in menus"><a href="javascript:;" @click="changeNavTitle(menu)" v-text="menu"></a></li>
+            <li><router-link :to="{name: 'List', query: {tab: 'all'}}">全部</router-link></li>
+            <li><router-link :to="{name: 'List', query: {tab: 'good'}}">精华</router-link></li>
+            <li><router-link :to="{name: 'List', query: {tab: 'share'}}">分享</router-link></li>
+            <li><router-link :to="{name: 'List', query: {tab: 'ask'}}">问答</router-link></li>
+            <li><router-link :to="{name: 'List', query: {tab: 'job'}}">招聘</router-link></li>
           </ul>
         </div>
     </div>
@@ -20,16 +24,10 @@
       props: {
           isShow: {
               default: false
-          },
-          menus: {
-              type: Array,
-              required: true
           }
       },
       methods: {
-          changeNavTitle(title) {
-             this.$emit("changeTitle", title);
-          }
+
       },
       components: {
           Avatar

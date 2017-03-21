@@ -1,25 +1,22 @@
 <template>
-  <div>
-    <top-nav></top-nav>
-
-  </div>
+    <div>
+      <img src="../assets/images/index.png" alt="">
+    </div>
 </template>
 <script>
-  import topNav from '../components/Header'
-
-
   export default {
-      data() {
-          return {
-
-          };
-      },
-      components: {
-        topNav
+      mounted() {
+          setTimeout(()=>{
+              this.$router.push('List')
+          }, 2000)
       }
   }
-
 </script>
-<style>
-
+<style lang="scss" scoped="scoped">
+  img{
+    display: block;
+    width: 100%;
+    background-color: #fff;
+    margin-top: 80px;
+  }
 </style>

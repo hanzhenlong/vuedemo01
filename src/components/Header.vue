@@ -1,68 +1,90 @@
 <template>
   <div>
     <div class="mask" :class="{show: showMenu}" @click="toggleSideBar"></div>
-    <header><span @click="toggleSideBar"><</span> <span v-text="title"></span> <span>></span></header>
-    <side-bar :isShow="showMenu" :menus="menuArr" @changeTitle="changeTitle"></side-bar>
+    <header><span @click="goBack">< 返回</span> <span @click="toggleSideBar" v-text="title"></span> <span><router-link :to="{name: 'Login'}">登录 ></router-link></span>
+    </header>
+    <div class="header-back"></div>
+    <side-bar :isShow="showMenu"></side-bar>
   </div>
 </template>
 <script>
   import sideBar from './SideBar.vue'
   export default{
-      name: 'topNav',
-      data() {
-          return {
-              title: "导航",
-              showMenu: false,
-              menuArr: ["嘻嘻", "哈哈", "呵呵", "嘿嘿", "嘎嘎"]
-          };
-      },
-      methods: {
-        toggleSideBar() {
-            this.showMenu = !this.showMenu;
-        },
-        changeTitle(newTitle) {
-            this.title = newTitle;
-            this.showMenu = false;
-        }
-      },
-      components: {
-        sideBar
+    name: 'topNav',
+    data() {
+      return {
+        showMenu: false
+      };
+    },
+    props: {
+      title: {
+        type: String,
+        default: '全部'
       }
+    },
+    methods: {
+      toggleSideBar() {
+        this.showMenu = !this.showMenu;
+      },
+      goBack() {
+        this.$router.go(-1);
+      }
+    },
+    watch: {},
+    components: {
+      sideBar
+    }
   }
 </script>
 <style lang="scss" scoped="scoped">
   @import "../assets/scss/mixin.scss";
 
-  .mask{
+  .mask {
     position: fixed;
     z-index: 999;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     transform: translateX(-100%);
     transition: all 0s ease 0s;
   }
-  .mask.show{
+
+  .mask.show {
     transform: translateX(0);
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
   }
-  header{
+
+  header {
     height: 40px;
-    background-color: seagreen;
     color: #fff;
     font-size: 14px;
     text-align: center;
     line-height: 40px;
     display: flex;
     justify-content: space-between;
-    & span:nth-child(2){
+    background-color: rgba(46, 139, 87, 0.9);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 800;
+    & span:nth-child(2) {
       flex: 1;
     }
-    & span{
+    & span {
       padding: 0 30px;
       @include setTapColor();
+      a, a:hover{
+        color: #ffffff;
+      }
     }
+  }
+
+  .header-back {
+    height: 40px;
+    visibility: hidden;
   }
 </style>
