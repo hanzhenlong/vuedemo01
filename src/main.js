@@ -12,6 +12,22 @@ if (window.sessionStorage.user) {
   store.dispatch('setUserInfo', JSON.parse(window.sessionStorage.user));
 }
 
+// 登录中间验证，页面需要登录而没有登录的情况下，直接跳转登录
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.state.userInfo.userId) {
+      next();
+    } else {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      });
+    }
+  } else {
+    next() // 确保一定要调用 next()
+  }
+});
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

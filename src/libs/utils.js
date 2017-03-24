@@ -2,6 +2,7 @@
  * Created by user on 2017/3/15.
  */
 import Timeago from 'timeago.js'
+import moment from 'moment'
 
 const MillisecondToDate = (time) => {
   let str = '';
@@ -15,6 +16,8 @@ const MillisecondToDate = (time) => {
 const getLastTimeStr = (time, isFriendly) => {
   if (isFriendly) {
     return MillisecondToDate(time);
+  } else {
+    return moment(time).format('YYYY-MM-DD HH:mm');
   }
 };
 

@@ -4,6 +4,8 @@ import Index from '../views/Index'
 import List from '../views/List'
 import Topic from '../views/Topic'
 import Login from '../views/Login'
+import User from '../views/User'
+import New from '../views/New'
 
 Vue.use(Router)
 
@@ -28,6 +30,19 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/user/:username',
+      name: 'User',
+      component: User
+    },
+    {
+      path: '/new',
+      name: 'New',
+      component: New,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })

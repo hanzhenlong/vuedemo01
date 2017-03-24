@@ -1,7 +1,7 @@
 <template>
     <div>
       <div>
-        <img :src="userInfo.avatar_url" alt="" class="avatar">
+        <img :src="userInfo.avatar_url" alt="" class="avatar" @click="goUser">
         <span>{{userInfo.loginname}}</span>
       </div>
     </div>
@@ -12,6 +12,11 @@
   export default {
     data() {
       return {};
+    },
+    methods: {
+      goUser() {
+        this.$router.push({name: 'User', params: {username: this.userInfo.loginname}});
+      }
     },
     computed: {
       ...mapGetters({

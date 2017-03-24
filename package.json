@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "jquery": "2.x",
+    "moment": "^2.18.1",
     "timeago.js": "^2.0.5",
     "vue": "^2.2.1",
     "vue-infinite-loading": "^2.0.3",

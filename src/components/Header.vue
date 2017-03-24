@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="mask" :class="{show: showMenu}" @click="toggleSideBar"></div>
-    <header><span @click="goBack">< 返回</span> <span @click="toggleSideBar" v-text="title"></span> <span><router-link :to="{name: 'Login'}">登录 ></router-link></span>
+    <header>
+      <span @click="goBack">< 返回</span>
+      <span @click="toggleSideBar" v-text="title"></span>
+      <span><router-link :to="{name: 'New'}">新增 ></router-link></span>
     </header>
     <div class="header-back"></div>
     <side-bar :isShow="showMenu"></side-bar>
